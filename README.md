@@ -151,7 +151,7 @@ Data will be stored in an IBM Cloud Object Storage (COS) instance.
 We will use the Minio client, as described at
 https://cloud.ibm.com/docs/services/cloud-object-storage?topic=cloud-object-storage-minio
 .  The binary is at https://dl.min.io/client/mc/release/linux-amd64/mc
-; its SHA256 hash is
+.  The last tested release was 2020-02-25T18-10-03Z and its SHA256 hash is
 2b679947158d54fb487e816807c1d01075c33dc865c15ee74fc80df79f680bab.
 
 The clusters come with `mc` installed and configured with a target

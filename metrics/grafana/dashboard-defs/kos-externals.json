@@ -15,7 +15,6 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 4,
   "links": [],
   "panels": [
     {
@@ -155,17 +154,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "histogram_quantile(0.99, rate(kos_ipam_attachment_create_to_address_latency_seconds_bucket[1m]))",
+          "expr": "histogram_quantile(0.99, rate(kos_ipam_last_client_write_to_address_latency_seconds_bucket[1m]))",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "99%ile address {{ contention }}",
+          "legendFormat": "99%ile address {{ last_client_wr }} {{ contention }}",
           "refId": "A"
         },
         {
-          "expr": "histogram_quantile(0.99, rate(kos_ipam_attachment_create_to_lock_latency_seconds_bucket[1m]))",
+          "expr": "histogram_quantile(0.99, rate(kos_ipam_last_client_write_to_lock_latency_seconds_bucket[1m]))",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "99%ile lock {{ contention }}",
+          "legendFormat": "99%ile lock {{ last_client_wr }} {{ contention }}",
           "refId": "B"
         }
       ],

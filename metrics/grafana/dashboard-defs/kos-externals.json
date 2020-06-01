@@ -80,7 +80,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "99th Percentile Subnet Create-to-Validated Latency secs",
+      "title": "99%ile Percentile Subnet Create-to-Validated Latency secs",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -157,14 +157,14 @@
           "expr": "histogram_quantile(0.99, rate(kos_ipam_last_client_write_to_address_latency_seconds_bucket[1m]))",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "99%ile address {{ last_client_wr }} {{ contention }}",
+          "legendFormat": "address last_client_wr={{ last_client_wr }} contention={{ contention }}",
           "refId": "A"
         },
         {
           "expr": "histogram_quantile(0.99, rate(kos_ipam_last_client_write_to_lock_latency_seconds_bucket[1m]))",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "99%ile lock {{ last_client_wr }} {{ contention }}",
+          "legendFormat": "lock last_client_wr={{ last_client_wr }} contention={{ contention }}",
           "refId": "B"
         }
       ],
@@ -172,7 +172,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Address Controller Latency secs",
+      "title": "99%ile Address Controller Latency secs",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -332,11 +332,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "histogram_quantile(0.99, rate(kos_agent_attachment_create_to_local_ifc_latency_seconds_bucket[1m]))",
+          "expr": "histogram_quantile(0.99, rate(kos_agent_last_client_write_to_local_ifc_latency_seconds_bucket[1m]))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
-          "legendFormat": "{{ node }}",
+          "legendFormat": "{{ node }} last_client_wr={{ last_client_wr }}",
           "refId": "A"
         }
       ],
@@ -344,7 +344,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "99th Percentile Create-To-Local-Interface Latency secs",
+      "title": "99%ile Last Client Write to Local Interface Latency secs",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -418,10 +418,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "histogram_quantile(0.99, rate(kos_agent_attachment_create_to_status_latency_seconds_bucket[1m]))",
+          "expr": "histogram_quantile(0.99, rate(kos_agent_last_client_write_to_status_update_latency_seconds_bucket[1m]))",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "{{ node }}",
+          "legendFormat": "{{ node }} last_client_wr={{ last_client_wr }}",
           "refId": "A"
         }
       ],
@@ -429,7 +429,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "99th Percentile Attachment Create-to-Ready Latency secs",
+      "title": "99%ile Last Client Write to Attachment Ready Latency secs",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -479,7 +479,7 @@
         "x": 0,
         "y": 36
       },
-      "id": 9,
+      "id": 13,
       "legend": {
         "avg": false,
         "current": false,
@@ -503,10 +503,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "histogram_quantile(0.99, rate(kos_agent_attachment_exec_duration_secs_bucket{what=\"postCreate\"}[1m]))",
+          "expr": "histogram_quantile(0.99, rate(kos_agent_last_client_write_to_remote_ifc_latency_seconds_bucket[1m]))",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "{{ node }} {{ lgComplaints }}",
+          "legendFormat": "{{ node }} last_client_wr={{ last_client_wr }}",
           "refId": "A"
         }
       ],
@@ -514,7 +514,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "99th Percentile of Ping Test Duration (secs)",
+      "title": "99%ile Last Client Write to Remote Interface Latency secs",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -563,6 +563,176 @@
         "w": 24,
         "x": 0,
         "y": 43
+      },
+      "id": 14,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.99, rate(kos_agent_attachment_impl_to_remote_ifc_latency_seconds_bucket[1m]))",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "{{ node }} last_client_wr={{ last_client_wr }}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "99%ile Local Interface to Remote Interface Latency secs",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "prometheus",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 50
+      },
+      "id": 9,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.99, rate(kos_agent_attachment_exec_duration_secs_bucket{what=\"postCreate\"}[1m]))",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "{{ node }} {{ lgComplaints }}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "99%ile of Ping Test Duration (secs)",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "prometheus",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 57
       },
       "id": 8,
       "legend": {
@@ -647,7 +817,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 50
+        "y": 64
       },
       "id": 7,
       "legend": {

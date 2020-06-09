@@ -37,7 +37,7 @@ spec:
         - /controller-manager
         - -v=5
         - --hostname=$(HOSTNAME)
-        - --qps=100
+        - --qps=200
         - --burst=200
         - --indirect-requests=true
 # Uncomment the following line if --indirect-requests is set to false

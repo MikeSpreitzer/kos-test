@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Endpoints
+metadata:
+  labels:
+    app: prometheus
+  name: prometheus
+subsets:
+- addresses:
+  - ip: 10.186.158.122
+    nodeName: 127.0.0.1
+  ports:
+  - port: 9090
+    protocol: TCP

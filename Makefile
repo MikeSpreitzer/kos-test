@@ -1,5 +1,5 @@
 DOCKER_PREFIX=mspreitz
-DOCKER_TAG=f0f870e2d5c859b980fb24fa39c13c5db9cfbd8c
+DOCKER_TAG=f3223ab2526aa4aa6c3bf8082ee9d8da818d95e3
 KOS_PERSIST=${HOME}/.kos-perf-study
 SMALL=false
 

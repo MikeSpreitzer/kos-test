@@ -61,8 +61,12 @@ data:
           action: keep
           regex: (true)
         - source_labels: [__address__]
-          regex: '10\.3\.(.*):.*'
+          regex: '10\.3\.([0-9.]*):.*'
           replacement: '100.64.$1:2379'
+          target_label: __address__
+        - source_labels: [__address__]
+          regex: '(172\.31\.[0-9.]*):.*'
+          replacement: '$1:2379'
           target_label: __address__
         - target_label: __scheme__
           action: replace

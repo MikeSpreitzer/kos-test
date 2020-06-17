@@ -1,7 +1,17 @@
 #!/bin/bash
 
+num_nodes=$(kubectl get Node --no-headers | wc -l)
+if (( num_nodes < 40 )); then
+	scrapat='.*'
+elif (( num_nodes < 400 )); then
+	scrapat='etcd|api|ctrl|data|base|lbpip|comp[0-9]*0$'
+else
+	scrapat='etcd|api|ctrl|data|base|lbpip|comp[0-9]*[147]0$'
+fi
 kubectl get node --no-headers -o custom-columns=Name:.metadata.name | while read nodename; do
-	kubectl annotate --overwrite Node $nodename prometheus.io/scrape=true
+	if egrep "$scrapat" <<<"$nodename" > /dev/null; then
+		kubectl annotate --overwrite Node $nodename prometheus.io/scrape=true
+	fi
 	if false; then
 		:
 	elif egrep 'ketcd[0-9]$' <<<"$nodename" > /dev/null; then
@@ -13,7 +23,6 @@ kubectl get node --no-headers -o custom-columns=Name:.metadata.name | while read
 		kubectl label --overwrite Node $nodename kos-role/kctrl=true
 
 	elif egrep 'netcd[0-9]$' <<<"$nodename" > /dev/null; then
-		kubectl annotate --overwrite Node $nodename prometheus.io/scrape-etcd=true
 		kubectl label --overwrite Node $nodename kos-role/netcd=true
 	elif egrep 'napi[0-9]$' <<<"$nodename" > /dev/null; then
 		kubectl label --overwrite Node $nodename kos-role/napi=true

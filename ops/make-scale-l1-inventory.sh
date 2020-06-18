@@ -12,15 +12,17 @@ kubectl get Node -o $'jsonpath={range .items[*]}{.status.addresses[?(@.type=="In
 		:
 	elif egrep 'ctrl[0-9]$' <<<"$nodename" > /dev/null; then
 		echo -n " kos_role_kctrl=yes"
-		echo -n " kos_role_ketcd=yes"
 		echo -n " kos_role_kapi=yes"
-		echo -n " kos_role_data=yes"
+		echo -n " kos_role_ketcd=yes"
 		echo
-	elif egrep 'comp[0-9]+$' <<<"$nodename" > /dev/null; then
-		echo -n " kos_role_comp=yes"
+	elif egrep 'mgmt[0-9]$' <<<"$nodename" > /dev/null; then
+		echo -n " kos_role_data=yes"
 		echo -n " kos_role_netcd=yes"
 		echo -n " kos_role_napi=yes"
 		echo -n " kos_role_nctrl=yes kos_role_netcd-op=yes"
+		echo
+	elif egrep 'comp[0-9]+$' <<<"$nodename" > /dev/null; then
+		echo -n " kos_role_comp=yes"
 		echo
 	else
 		echo

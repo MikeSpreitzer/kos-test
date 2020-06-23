@@ -10,9 +10,8 @@ kubectl get Node -o $'jsonpath={range .items[*]}{.status.addresses[?(@.type=="In
 	echo -n "$ip" "nodename=$nodename"
 	if false; then
 		:
-	elif egrep 'ketcd[0-9]$' <<<"$nodename" > /dev/null; then
-		echo " kos_role_ketcd=yes"
 	elif egrep 'kapi[0-9]$' <<<"$nodename" > /dev/null; then
+		echo " kos_role_ketcd=yes"
 		echo " kos_role_kapi=yes"
 	elif egrep 'kctrl[0-9]$' <<<"$nodename" > /dev/null; then
 		echo " kos_role_kctrl=yes"

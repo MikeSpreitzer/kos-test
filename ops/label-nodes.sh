@@ -14,11 +14,10 @@ kubectl get node --no-headers -o custom-columns=Name:.metadata.name | while read
 	fi
 	if false; then
 		:
-	elif egrep 'ketcd[0-9]$' <<<"$nodename" > /dev/null; then
-		kubectl annotate --overwrite Node $nodename prometheus.io/scrape-etcd=true
-		kubectl label --overwrite Node $nodename kos-role/ketcd=true
 	elif egrep 'kapi[0-9]$' <<<"$nodename" > /dev/null; then
 		kubectl label --overwrite Node $nodename kos-role/kapi=true
+		kubectl annotate --overwrite Node $nodename prometheus.io/scrape-etcd=true
+		kubectl label --overwrite Node $nodename kos-role/ketcd=true
 	elif egrep 'kctrl[0-9]$' <<<"$nodename" > /dev/null; then
 		kubectl label --overwrite Node $nodename kos-role/kctrl=true
 

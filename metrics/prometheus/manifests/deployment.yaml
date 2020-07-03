@@ -30,12 +30,13 @@ spec:
           mountPath: /var/lib
       containers:
       - name: prometheus
-        image: prom/prometheus:v2.6.1
+        image: prom/prometheus:v2.19.1
         imagePullPolicy: IfNotPresent
         args:
           - '--storage.tsdb.retention=8h'
           - '--storage.tsdb.path=/var/lib/prometheus'
           - '--config.file=/etc/prometheus/config.yaml'
+          - --web.enable-admin-api
         ports:
         - containerPort: 9090
         volumeMounts:

@@ -1,25 +1,4 @@
 {
-  "__inputs": [],
-  "__requires": [
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "4.6.3"
-    },
-    {
-      "type": "panel",
-      "id": "graph",
-      "name": "Graph",
-      "version": ""
-    },
-    {
-      "type": "datasource",
-      "id": "prometheus",
-      "name": "Prometheus",
-      "version": "1.0.0"
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -36,300 +15,381 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "hideControls": false,
-  "id": null,
   "links": [],
-  "refresh": false,
-  "rows": [
+  "panels": [
     {
-      "collapse": false,
-      "height": "250px",
-      "panels": [
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "prometheus",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "max",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
         {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "prometheus",
-          "fill": 1,
-          "id": 1,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": false,
-            "max": true,
-            "min": false,
-            "rightSide": true,
-            "show": true,
-            "sort": "max",
-            "sortDesc": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 12,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(rate(container_cpu_usage_seconds_total{id=\"/\"}[1m])) by (instance)",
-              "format": "time_series",
-              "intervalFactor": 2,
-              "legendFormat": "{{ instance }}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "CPU Usage Per Node",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": "CPUs",
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": false
-            }
-          ]
+          "expr": "sum(rate(container_cpu_usage_seconds_total{id=\"/\"}[1m])) by (instance)",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "{{ instance }}",
+          "refId": "A"
         }
       ],
-      "repeat": null,
-      "repeatIteration": null,
-      "repeatRowId": null,
-      "showTitle": false,
-      "title": "Dashboard Row",
-      "titleSize": "h6"
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "CPU Usage Per Node",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": "CPUs",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
-      "collapse": false,
-      "height": 250,
-      "panels": [
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "prometheus",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 7
+      },
+      "id": 2,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "max",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
         {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "prometheus",
-          "fill": 1,
-          "id": 2,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": false,
-            "max": true,
-            "min": false,
-            "rightSide": true,
-            "show": true,
-            "sort": "max",
-            "sortDesc": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 12,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(rate(container_network_transmit_bytes_total{id=\"/\", interface=~\"eth[0-3]\"}[1m])) by (instance)",
-              "format": "time_series",
-              "intervalFactor": 2,
-              "legendFormat": "{{ instance }} xmit",
-              "refId": "A"
-            },
-            {
-              "expr": "- sum(rate(container_network_receive_bytes_total{id=\"/\", interface=~\"eth[0-3]\"}[1m])) by (instance)",
-              "format": "time_series",
-              "intervalFactor": 2,
-              "legendFormat": "{{ instance }} recv",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Network Throughput on eth[0-3]",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "Bps",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
+          "expr": "sum(rate(container_network_transmit_bytes_total{id=\"/\", interface=~\"eth[0-3]\"}[1m])) by (instance)",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "{{ instance }} xmit",
+          "refId": "A"
+        },
+        {
+          "expr": "- sum(rate(container_network_receive_bytes_total{id=\"/\", interface=~\"eth[0-3]\"}[1m])) by (instance)",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "{{ instance }} recv",
+          "refId": "B"
         }
       ],
-      "repeat": null,
-      "repeatIteration": null,
-      "repeatRowId": null,
-      "showTitle": false,
-      "title": "Dashboard Row",
-      "titleSize": "h6"
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Network Throughput on eth[0-3]",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "Bps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
-      "collapse": false,
-      "height": 250,
-      "panels": [
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "prometheus",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 14
+      },
+      "id": 4,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "max",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
         {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "prometheus",
-          "fill": 1,
-          "id": 4,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": false,
-            "max": true,
-            "min": false,
-            "rightSide": true,
-            "show": true,
-            "sort": "max",
-            "sortDesc": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "span": 12,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "container_memory_rss{id=\"/\"}",
-              "format": "time_series",
-              "intervalFactor": 2,
-              "legendFormat": "{{ instance }}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "RSS Memory",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "bytes",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ]
+          "expr": "container_memory_rss{id=\"/\"}",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "{{ instance }}",
+          "refId": "A"
         }
       ],
-      "repeat": null,
-      "repeatIteration": null,
-      "repeatRowId": null,
-      "showTitle": false,
-      "title": "Dashboard Row",
-      "titleSize": "h6"
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "RSS Memory",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "bytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "description": "filesystem bytes in use by devices named /dev/vd.*",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 21
+      },
+      "id": 6,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "avg",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(container_fs_usage_bytes{id=\"/\",device=~\"/dev/vd.*\"}) without (device)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{ instance }}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "fs bytes in use",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     }
   ],
-  "schemaVersion": 14,
+  "refresh": false,
+  "schemaVersion": 16,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-12h",
     "to": "now"
   },
   "timepicker": {
@@ -359,5 +419,6 @@
   },
   "timezone": "browser",
   "title": "Resource Usage Per Node",
-  "version": 2
+  "uid": "TdeT64GMz",
+  "version": 1
 }

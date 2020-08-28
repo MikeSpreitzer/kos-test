@@ -40,7 +40,7 @@ scrape_configs:
     action: keep
     regex: default;kubernetes;https
 
-# etcd servers on nodes in /etc/prom-file-sd/file-sd.yaml
+# etcd servers on nodes in the cluster
 - job_name: 'kubernetes-etcd'
   tls_config:
     cert_file: /etc/main-etcd-client-tls/cert.pem
@@ -80,6 +80,18 @@ scrape_configs:
   - source_labels: [__meta_kubernetes_node_annotation_prometheus_io_scrape]
     action: keep
     regex: true
+
+- job_name: 'kubernetes-nodes-driver'
+  kubernetes_sd_configs:
+  - role: node
+  relabel_configs:
+  - source_labels: [__address__]
+    regex: '(.*):10250'
+    replacement: '${1}:9376'
+    target_label: __address__
+  - source_labels: [instance]
+    action: keep
+    regex: '.*base[0-9]*'
 
 
 

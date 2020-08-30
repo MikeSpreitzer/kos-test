@@ -15,7 +15,6 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 7,
   "links": [],
   "panels": [
     {
@@ -57,8 +56,9 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(apiserver_request_count[1m])) by (instance)",
+          "expr": "sum(rate(apiserver_request_total[1m])) without (code,component,group,version,resource,subresource,scope,verb,contentType)",
           "format": "time_series",
+          "instant": false,
           "intervalFactor": 2,
           "legendFormat": "{{ instance }} total",
           "refId": "A"
@@ -78,35 +78,28 @@
           "refId": "H"
         },
         {
-          "expr": "sum(rate(apiserver_dropped_requests[1m])) by (instance)",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "{{ instance }} dropped",
-          "refId": "C"
-        },
-        {
-          "expr": "sum(rate(apiserver_request_count{code=\"429\"}[1m])) by (instance)",
+          "expr": "sum(rate(apiserver_request_total{code=\"429\"}[1m])) without (component,group,version,resource,subresource,scope,verb,contentType)",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{ instance }} 429",
           "refId": "B"
         },
         {
-          "expr": "sum(rate(apiserver_request_count{code=\"404\"}[1m])) by (instance)",
+          "expr": "sum(rate(apiserver_request_total{code=\"404\"}[1m])) without (component,group,version,resource,subresource,scope,verb,contentType)",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{ instance }} 404",
           "refId": "F"
         },
         {
-          "expr": "sum(rate(apiserver_request_count{code=~\"4..\",code!=\"429\",code!=\"404\"}[1m])) by (instance)",
+          "expr": "sum(rate(apiserver_request_total{code=~\"4..\",code!=\"429\",code!=\"404\"}[1m])) without (code,component,group,version,resource,subresource,scope,verb,contentType)",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{ instance }} 4other",
           "refId": "D"
         },
         {
-          "expr": "sum(rate(apiserver_request_count{code=~\"5..\"}[1m])) by (instance)",
+          "expr": "sum(rate(apiserver_request_total{code=~\"5..\"}[1m])) without (code,component,group,version,resource,subresource,scope,verb,contentType)",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{ instance }} 5XX",
@@ -195,10 +188,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "histogram_quantile(0.9, sum(rate(apiserver_request_latencies_bucket{verb!~\"WATCH|CONNECT|LIST\"}[1m])) by (instance,resource,le))/1.0e6",
+          "expr": "histogram_quantile(0.9, sum(rate(apiserver_request_duration_seconds_bucket{verb!~\"WATCH|CONNECT|LIST\"}[1m])) without (component,group,version,verb,scope))",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "90th {{ instance }} {{ resource }}",
+          "legendFormat": "90th {{ instance }} {{ resource }}/{{ subresource }}",
           "refId": "A"
         }
       ],
@@ -284,10 +277,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(apiserver_request_latencies_sum{verb!~\"WATCH|CONNECT|LIST\"}[1m])) by (instance,resource) / sum(rate(apiserver_request_latencies_count{verb!~\"WATCH|CONNECT|LIST\"}[1m])) by (instance,resource) / 1.0e6",
+          "expr": "sum(rate(apiserver_request_duration_seconds_sum{verb!~\"WATCH|CONNECT|LIST\"}[1m])) without (component,group,version,verb,scope) / sum(rate(apiserver_request_duration_seconds_count{verb!~\"WATCH|CONNECT|LIST\"}[1m])) without (component,group,version,verb,scope)",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "avg {{ instance }} {{ resource }}",
+          "legendFormat": "avg {{ instance }} {{ resource }}/{{ subresource }}",
           "refId": "A"
         }
       ],
@@ -384,7 +377,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Current Number of Inflight Requests",
+      "title": "1sec high-water-mark of Inflight Requests",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -463,7 +456,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "apiserver_longrunning_gauge",
+          "expr": "sum(apiserver_longrunning_gauge) without (group,version)",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{ instance }} {{ resource }} {{ verb }} {{ scope }}",
@@ -552,10 +545,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(apiserver_longrunning_gauge) without (instance)",
+          "expr": "sum(apiserver_longrunning_gauge) without (instance,group,version)",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "{{ kubernetes_namespace }} {{ resource }} {{ verb }} {{ scope }}",
+          "legendFormat": "{{ resource }} {{ verb }} {{ scope }}",
           "refId": "A"
         }
       ],
@@ -641,10 +634,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(apiserver_request_count{resource=\"tokenreviews\"}[1m])) by (instance, verb, code, client, contentType)",
+          "expr": "sum(rate(apiserver_request_total{resource=\"tokenreviews\"}[1m])) without (component,group,version,resource,subresource,scope)",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "{{ instance }} {{ verb }} {{ code }} {{ client }} {{ contentType }}",
+          "legendFormat": "{{ instance }} {{ verb }} {{ code }} {{ contentType }}",
           "refId": "A"
         }
       ],
@@ -730,10 +723,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(apiserver_request_count{resource=\"subjectaccessreviews\"}[1m])) by (instance, verb, code, client, contentType)",
+          "expr": "sum(rate(apiserver_request_total{resource=\"subjectaccessreviews\"}[1m])) without (component,group,version,resource,subresource,scope)",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "{{ instance }} {{ verb }} {{ code }} {{ client }} {{ contentType }}",
+          "legendFormat": "{{ instance }} {{ verb }} {{ code }} {{ contentType }}",
           "refId": "A"
         }
       ],
@@ -994,7 +987,7 @@
     ]
   },
   "timezone": "",
-  "title": "Kubernetes apiservers",
-  "uid": "z-OXUz_mk",
+  "title": "Kubernetes 1.18 apiservers",
+  "uid": "z-OXUz_ml",
   "version": 1
 }

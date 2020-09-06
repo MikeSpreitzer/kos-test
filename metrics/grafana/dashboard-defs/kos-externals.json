@@ -620,7 +620,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "kos_agent_local_ifc_delay_due_to_downtime_seconds_count / 100",
+          "expr": "kos_agent_local_ifc_delay_due_to_local_ca_downtime_seconds_count / 100",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
@@ -628,14 +628,14 @@
           "refId": "A"
         },
         {
-          "expr": "kos_agent_local_ifc_delay_due_to_downtime_seconds_count / on(node_name) group_left sum(kos_agent_last_client_write_to_local_ifc_latency_seconds_count) by (node_name)",
+          "expr": "kos_agent_local_ifc_delay_due_to_local_ca_downtime_seconds_count / on(node_name) group_left sum(kos_agent_last_client_write_to_local_ifc_latency_seconds_count) by (node_name)",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "waiters / total {{ node_name }} last_client_wr={{ last_client_wr }}",
           "refId": "B"
         },
         {
-          "expr": "kos_agent_local_ifc_delay_due_to_downtime_seconds_count / kos_agent_local_ifc_delay_due_to_downtime_seconds_sum",
+          "expr": "kos_agent_local_ifc_delay_due_to_local_ca_downtime_seconds_count / kos_agent_local_ifc_delay_due_to_local_ca_downtime_seconds_sum",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "avg delay secs {{ node_name }} last_client_wr={{ last_client_wr }}",
@@ -891,21 +891,21 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "kos_agent_remote_ifc_delay_due_to_downtime_seconds_count / 100",
+          "expr": "kos_agent_remote_ifc_delay_due_to_remote_ca_downtime_seconds_count / 100",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "num waiters / 100 {{ node_name }} last_ca_start={{ last_ca_start }} last_client_wr={{ last_client_wr }}",
           "refId": "A"
         },
         {
-          "expr": "kos_agent_remote_ifc_delay_due_to_downtime_seconds_count / on(node_name) group_left sum(kos_agent_last_client_write_to_remote_ifc_latency_seconds_count) by (node_name)",
+          "expr": "kos_agent_remote_ifc_delay_due_to_remote_ca_downtime_seconds_count / on(node_name) group_left sum(kos_agent_last_client_write_to_remote_ifc_latency_seconds_count) by (node_name)",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "waiters / total {{ node_name }} last_ca_start={{ last_ca_start }} last_client_wr={{ last_client_wr }}",
           "refId": "B"
         },
         {
-          "expr": "kos_agent_remote_ifc_delay_due_to_downtime_seconds_sum / kos_agent_remote_ifc_delay_due_to_downtime_seconds_count",
+          "expr": "kos_agent_remote_ifc_delay_due_to_remote_ca_downtime_seconds_sum / kos_agent_remote_ifc_delay_due_to_remote_ca_downtime_seconds_count",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "avg delay secs {{ node_name }} last_ca_start={{ last_ca_start }} last_client_wr={{ last_client_wr }}",
@@ -916,7 +916,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Remote Interface Creation Delay due to local or remote CA Downtime",
+      "title": "Remote Interface Creation Delay due to Remote CA Downtime",
       "tooltip": {
         "shared": true,
         "sort": 0,

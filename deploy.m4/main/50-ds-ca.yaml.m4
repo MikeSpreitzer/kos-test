@@ -33,6 +33,8 @@ spec:
         - name: network-api-ca
           mountPath: /network-api
           readOnly: true
+        - name: lockfile-dir
+          mountPath: /kos/ca
         securityContext:
           privileged: true
         env:
@@ -53,6 +55,7 @@ spec:
         - -allowed-programs=/usr/local/kos/bin/TestByPing,/usr/local/kos/bin/RemoveNetNS
         - -network-api-ca=/network-api/ca.crt
         - -netfabric=ovs
+        - -lock-file=/kos/ca/node.lock
       volumes:
       - name: ovs-socks-dir
         hostPath:
@@ -65,3 +68,8 @@ spec:
       - name: network-api-ca
         secret:
           secretName: network-api-ca
+      - name: lockfile-dir
+        hostPath:
+          path: /kos/ca
+          type: DirectoryOrCreate
+

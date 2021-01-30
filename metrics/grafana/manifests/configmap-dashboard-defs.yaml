@@ -5014,12 +5014,112 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": "prometheus",
+          "description": "The absolute number of subnets that were affected is scaled down by 100 to make it closer to the other plots and make sure the real values are not approximated.",
+          "fill": 1,
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 8
+          },
+          "id": 16,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "kos_subnet_validator_validation_delay_due_to_downtime_seconds_count / 100",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "num waiters / 100 statusErr={{ statusErr }}",
+              "refId": "A"
+            },
+            {
+              "expr": "kos_subnet_validator_validation_delay_due_to_downtime_seconds_count / kos_subnet_validator_subnet_create_to_validated_latency_seconds_count",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "waiters / total statusErr={{ statusErr }}",
+              "refId": "B"
+            },
+            {
+              "expr": "kos_subnet_validator_validation_delay_due_to_downtime_seconds_sum / kos_subnet_validator_validation_delay_due_to_downtime_seconds_count",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "avg wait secs statusErr={{ statusErr }}",
+              "refId": "C"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Subnet Validation Delay due to Validator Downtime",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "prometheus",
           "fill": 1,
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 8
+            "y": 16
           },
           "id": 2,
           "legend": {
@@ -5106,13 +5206,114 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": "prometheus",
+          "description": "The absolute number of attachments that were affected is scaled down by 100 to make it closer to the other plots and make sure the real values are not approximated.",
+          "fill": 1,
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 23
+          },
+          "id": 17,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "kos_ipam_address_delay_due_to_downtime_seconds_count / 100",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "num waiters / 100 last_client_wr={{ last_client_wr }} last_controller_start={{ last_controller_start }}",
+              "refId": "A"
+            },
+            {
+              "expr": "kos_ipam_address_delay_due_to_downtime_seconds_count / scalar(sum(kos_ipam_last_client_write_to_address_latency_seconds_count))",
+              "format": "time_series",
+              "instant": false,
+              "intervalFactor": 2,
+              "legendFormat": "waiters / total last_client_wr={{ last_client_wr }} last_controller_start={{ last_controller_start }}",
+              "refId": "B"
+            },
+            {
+              "expr": "kos_ipam_address_delay_due_to_downtime_seconds_sum / kos_ipam_address_delay_due_to_downtime_seconds_count",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "avg delay secs last_client_wr={{ last_client_wr }} last_controller_start={{ last_controller_start }}",
+              "refId": "C"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Address Assignment Delay due to Controllers Downtime",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "prometheus",
           "description": "Fraction of attempt to allocate an address that fail because none is available",
           "fill": 1,
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 15
+            "y": 30
           },
           "id": 12,
           "legend": {
@@ -5197,7 +5398,7 @@ data:
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 22
+            "y": 37
           },
           "id": 1,
           "legend": {
@@ -5278,12 +5479,113 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": "prometheus",
+          "description": "The absolute number of attachments that were affected is scaled down by 100 to make it closer to the other plots and make sure the real values are not approximated.",
           "fill": 1,
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 29
+            "y": 44
+          },
+          "id": 18,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "kos_agent_local_ifc_delay_due_to_local_ca_downtime_seconds_count / 100",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "num waiters / 100 {{ node_name }} last_client_wr={{ last_client_wr }}",
+              "refId": "A"
+            },
+            {
+              "expr": "kos_agent_local_ifc_delay_due_to_local_ca_downtime_seconds_count / on(node_name) group_left sum(kos_agent_last_client_write_to_local_ifc_latency_seconds_count) by (node_name)",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "waiters / total {{ node_name }} last_client_wr={{ last_client_wr }}",
+              "refId": "B"
+            },
+            {
+              "expr": "kos_agent_local_ifc_delay_due_to_local_ca_downtime_seconds_count / kos_agent_local_ifc_delay_due_to_local_ca_downtime_seconds_sum",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "avg delay secs {{ node_name }} last_client_wr={{ last_client_wr }}",
+              "refId": "C"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Local Interface Creation Delay due to CA Downtime",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "prometheus",
+          "fill": 1,
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 51
           },
           "id": 4,
           "legend": {
@@ -5368,7 +5670,7 @@ data:
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 36
+            "y": 58
           },
           "id": 13,
           "legend": {
@@ -5448,12 +5750,112 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": "prometheus",
+          "description": "The absolute number of attachments that were affected is scaled down by 100 to make it closer to the other plots and make sure the real values are not approximated.",
           "fill": 1,
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 43
+            "y": 65
+          },
+          "id": 19,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "kos_agent_remote_ifc_delay_due_to_remote_ca_downtime_seconds_count / 100",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "num waiters / 100 {{ node_name }} last_ca_start={{ last_ca_start }} last_client_wr={{ last_client_wr }}",
+              "refId": "A"
+            },
+            {
+              "expr": "kos_agent_remote_ifc_delay_due_to_remote_ca_downtime_seconds_count / on(node_name) group_left sum(kos_agent_last_client_write_to_remote_ifc_latency_seconds_count) by (node_name)",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "waiters / total {{ node_name }} last_ca_start={{ last_ca_start }} last_client_wr={{ last_client_wr }}",
+              "refId": "B"
+            },
+            {
+              "expr": "kos_agent_remote_ifc_delay_due_to_remote_ca_downtime_seconds_sum / kos_agent_remote_ifc_delay_due_to_remote_ca_downtime_seconds_count",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "legendFormat": "avg delay secs {{ node_name }} last_ca_start={{ last_ca_start }} last_client_wr={{ last_client_wr }}",
+              "refId": "C"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Remote Interface Creation Delay due to Remote CA Downtime",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "prometheus",
+          "fill": 1,
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 72
           },
           "id": 14,
           "legend": {
@@ -5539,7 +5941,7 @@ data:
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 50
+            "y": 79
           },
           "id": 15,
           "legend": {
@@ -5624,7 +6026,7 @@ data:
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 57
+            "y": 86
           },
           "id": 9,
           "legend": {
@@ -5709,7 +6111,7 @@ data:
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 64
+            "y": 93
           },
           "id": 8,
           "legend": {
@@ -5794,7 +6196,7 @@ data:
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 71
+            "y": 100
           },
           "id": 7,
           "legend": {
